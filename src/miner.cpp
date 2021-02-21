@@ -279,6 +279,7 @@ void BlockAssembler::CalculateFeesForBlock()
     CAmount pricerate = pblock->GetPriceinCurrency(0);
 
     nFees = 0;
+    int countmint = 0;
 
     for (i = 1;i < pblock->vtx.size(); i++) {//start from transaction 1 not 0, because transaction 0 is the coinbase placeholder
 
@@ -310,7 +311,10 @@ void BlockAssembler::CalculateFeesForBlock()
                 txfee_aux = ((__int128_t)txfee_aux * (__int128_t)pblock->GetPriceinCurrency(2) / (__int128_t)COIN ) * (__int128_t)COIN / (__int128_t)pblock->GetPriceinCurrency(0);
             }
         }
-        nFees += txfee_aux;
+        if (!tx.isminttransaction())
+        {
+            nFees += txfee_aux;
+        }
     }
 }
 
@@ -1489,14 +1493,16 @@ void BlockAssembler::addPackageTxs(int &nPackagesSelected, int &nDescendantsUpda
         CAmount packageFees = iter->GetModFeesWithAncestors();
         int64_t packageSigOpsCost = iter->GetSigOpCostWithAncestors();
         bool isnick = iter->IsNicknameTx();
+        bool ismint = iter->IsMintTx();
         if (fUsingModified) {
             packageSize = modit->nSizeWithAncestors;
             packageFees = modit->nModFeesWithAncestors;
             packageSigOpsCost = modit->nSigOpCostWithAncestors;
             isnick = modit->IsNicknameTx();
+            ismint = modit->IsMintTx();
         }        
 
-        if (!isnick && packageFees < blockMinFeeRate.GetFee(packageSize)) {
+        if (!ismint && !isnick && packageFees < blockMinFeeRate.GetFee(packageSize)) {
             // Everything else we might consider has a lower fee rate
             return;
         }
