@@ -144,7 +144,7 @@ public:
         consensus.X25XTIME = 1583056800;//Time of X25X fork
         consensus.DEACTIVATEDOLLAR = 1593331200;//Time of fork to deactivate new Dollar transactions
         consensus.DEACTIVATEPRICESERVERS = 1598083200;//Time of fork to deactivate the price servers
- 
+        consensus.mintTxOut = uint256S("0xbc131082a5e69a97e94e61f2dac7aa7e152f700d11b9d82b1906efe10e6a55f5"); 
 
         // The best chain should have at least this much work.                                                
         consensus.nMinimumChainWork = uint256S("0x00");
@@ -378,6 +378,7 @@ public:
         consensus.X25XTIME = 1581238003;//Time of X25X fork
         consensus.DEACTIVATEDOLLAR = 1592915126;//Time of fork to deactivate new Dollar transactions 
         consensus.DEACTIVATEPRICESERVERS = 1596702228;//Time of fork to deactivate the price servers
+        consensus.mintTxOut = uint256S("0x8ff824bc420ab27e8b47f02c058aa804236e701d09019851cbab1240b7bce292");
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
@@ -556,6 +557,7 @@ public:
         consensus.X25XTIME = 1581238003;//Time of X25X fork
         consensus.DEACTIVATEDOLLAR = 1592915126;//Time of fork to deactivate new Dollar transactions 
         consensus.DEACTIVATEPRICESERVERS = 1596702228;//Time of fork to deactivate the price servers
+        consensus.mintTxOut = uint256S("0x8ff824bc420ab27e8b47f02c058aa804236e701d09019851cbab1240b7bce292");
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
